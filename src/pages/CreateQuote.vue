@@ -30,21 +30,25 @@
           v-model.trim="quoteText"
         ></textarea>
         <div class="error-msg" :class="{ invisible: quoteIsValid }">
-          <p><span>Please insert more than 6 characters:</span>{{ quoteLength }}</p>
+          <p>
+            <span>Please insert more than 6 characters:</span>{{ quoteLength }}
+          </p>
         </div>
       </div>
       <div class="quote-actions">
         <button class="router-button" @click="publishQuote">
           Publish Quote
         </button>
-        <router-link class="router-button" :to="{name:'QuotePreview'}">Quote Preview</router-link>
+        <router-link class="router-button" :to="{ name: 'QuotePreview' }"
+          >Preview Quote</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// require("dotenv").config(); 
+// require("dotenv").config();
 
 export default {
   name: "CreateQuote",
@@ -61,17 +65,14 @@ export default {
     quoteLength() {
       let numofChar = this.quoteText.replace(/\s+/g, "").length;
       return numofChar;
-    }
+    },
   },
   methods: {
     publishQuote() {
       this.quoteIsValid = true;
-      console.log(process.env);
-      
-      console.log("tu",process.env.VUE_APP_KEY);
+
       if (this.quoteLength < 6 || this.authorName === "") {
         this.quoteIsValid = false;
-        console.log("usao",this.quoteLength);
         return;
       }
 
@@ -80,7 +81,6 @@ export default {
       // let quote = this.quoteText.replace(/\s+/g, " ");
 
       //publish quote
-
     },
   },
 };

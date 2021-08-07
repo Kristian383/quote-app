@@ -5,7 +5,8 @@ const store = createStore({
         return {
             quoteText: "",
             quoteAuthor: "",
-            photoURL:"",
+            photoURL: "",
+            photoAuthor: "",
             sampleQuoteCards: [
                 {
                     id: 1,
@@ -29,30 +30,43 @@ const store = createStore({
 
         }
     },
-    // actions: {
-    //     async fetchPhoto(context) {
-            
-    //         const response = await fetch(`https://api.unsplash.com/photos/random?landscape&user_id=${ACCESS_KEY}`);
+    actions: {
+        async fetchPhotoData(context) {
+            const response = await fetch(`https://api.unsplash.com/photos/random?squarish&client_id=${process.env.VUE_APP_KEY}`);
 
-    //         const responseData = await response.json();
-    //         if (!response.ok) {
-    //             const error = new Error(responseData.message || "failed to fetch request")
-    //             throw error;
-    //         }
-    //         console.log(responseData);
-    //         const photoUrl=responseData["urls"];
-    //         console.log(photoUrl);
-    //         context.commit("setPhotoUrl","moj-url")
-    //     }
-    // },
-    // mutations: {
-    //     setPhotoUrl(state,payload){
-    //         state.photoURL=payload;
-    //     }
-    // },
+            const responseData = await response.json();
+            if (!response.ok) {
+                const error = new Error(responseData.message || "failed to fetch request")
+                throw error;
+            }
+            // console.log("responseData", responseData);
+            const photoUrl = responseData["urls"];
+            const author = responseData["user"];
+            context.commit("setPhotoUrl", photoUrl);
+            context.commit("setPhotoAuthor", author);
+
+        }
+    },
+    mutations: {
+        setPhotoUrl(state, payload) {
+            const imgUrlSize = payload.regular;
+            state.photoURL = imgUrlSize;
+
+        },
+        setPhotoAuthor(state, payload) {
+            const author = payload.name;
+            state.photoAuthor = author;
+        }
+    },
     getters: {
         getQuotes(state) {
             return state.sampleQuoteCards;
+        },
+        getPhotoUrl(state) {
+            return state.photoURL;
+        },
+        getPhotoAuthor(state) {
+            return state.photoAuthor;
         }
     }
 
