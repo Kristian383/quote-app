@@ -18,12 +18,12 @@
               >
             </li>
             <li>
-              <router-link class="link" :to="{ name: 'Home' }"
+              <router-link class="link" :to="{ name: 'Quotes' }"
                 >Quotes</router-link
               >
             </li>
             <li>
-              <router-link class="link" :to="{ name: 'Home' }"
+              <router-link class="link" :to="{ name: 'CreateQuote' }"
                 >Create Quote</router-link
               >
             </li>

@@ -17,6 +17,8 @@ library.add(faEdit)
 library.add(faTrashAlt)
 library.add(faPenSquare)
 
+
+
 const app = createApp(App);
 
 app.component('font-awesome-icon', FontAwesomeIcon)

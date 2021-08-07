@@ -3,6 +3,9 @@ import { createStore } from "vuex";
 const store = createStore({
     state() {
         return {
+            quoteText: "",
+            quoteAuthor: "",
+            photoURL:"",
             sampleQuoteCards: [
                 {
                     id: 1,
@@ -22,19 +25,31 @@ const store = createStore({
                     quoteCoverPhoto: "stock-3",
                     quoteDate: "Aug 6, 2021",
                 },
-                // {
-                //   id: 4,
-                //   quoteTitle: "Quote Card #4",
-                //   quoteCoverPhoto: "stock-4",
-                //   quoteDate: "Aug 6, 2021",
-                // },
             ],
+
         }
     },
-    actions: {
+    // actions: {
+    //     async fetchPhoto(context) {
+            
+    //         const response = await fetch(`https://api.unsplash.com/photos/random?landscape&user_id=${ACCESS_KEY}`);
 
-    },
-    mutations: {},
+    //         const responseData = await response.json();
+    //         if (!response.ok) {
+    //             const error = new Error(responseData.message || "failed to fetch request")
+    //             throw error;
+    //         }
+    //         console.log(responseData);
+    //         const photoUrl=responseData["urls"];
+    //         console.log(photoUrl);
+    //         context.commit("setPhotoUrl","moj-url")
+    //     }
+    // },
+    // mutations: {
+    //     setPhotoUrl(state,payload){
+    //         state.photoURL=payload;
+    //     }
+    // },
     getters: {
         getQuotes(state) {
             return state.sampleQuoteCards;

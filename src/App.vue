@@ -99,6 +99,8 @@ export default {
   color: white;
   border-radius: 20px;
   border: none;
+
+  transition: .2s ease-in all;
   /* text-transform: uppercase; */
 }
 </style>

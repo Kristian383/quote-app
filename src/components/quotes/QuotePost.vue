@@ -6,7 +6,7 @@
         <p class="content-preview">
           Feeling inspired?
         </p>
-        <router-link class="link router-button" :to="{ name: 'Quotes' }">
+        <router-link class="link router-button" :to="{ name: 'CreateQuote' }">
           Create A Quote
           <font-awesome-icon icon="pen-square" id="ikona"></font-awesome-icon>
         </router-link>

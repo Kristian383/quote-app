@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import QuotePost from "../components/blogs/QuotePost.vue";
+import QuotePost from "../components/quotes/QuotePost.vue";
 import QuoteCard from "../components/ui/QuoteCard.vue";
 export default {
   name:"Home",
