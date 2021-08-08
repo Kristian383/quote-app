@@ -4,17 +4,14 @@
       <div class="icon">
         <font-awesome-icon icon="edit" class="edit"></font-awesome-icon>
       </div>
-      <div class="icon">
+      <div class="icon" @click="removeQuote">
         <font-awesome-icon icon="trash-alt" class="delete"></font-awesome-icon>
       </div>
     </div>
-    <img
-      :src="quoteCoverPhoto"
-      alt="Quote photo"
-    />
+    <img :src="quoteCoverPhoto" alt="Quote photo" />
     <div class="info">
-      <h4>{{ quoteAuthor }}</h4>
-      <h6>Posted on: {{ quoteDate }} </h6>
+      <h4>Quote by {{ quoteAuthor }}</h4>
+      <h6>Posted on: {{ quoteDate }}</h6>
       <router-link :to="quoteViewLink" class="link">
         View The Quote
         <font-awesome-icon icon="eye" id="ikona"></font-awesome-icon>
@@ -26,15 +23,17 @@
 <script>
 export default {
   name: "quoteCard",
-  props: ["quoteAuthor", "quoteDate", "quoteCoverPhoto","quoteId"],
-  computed:{
-    quoteViewLink(){
-      return  '/quotes/' + this.quoteId;
-    }
+  props: ["quoteAuthor", "quoteDate", "quoteCoverPhoto", "quoteId"],
+  computed: {
+    quoteViewLink() {
+      return "/quotes/" + this.quoteId;
+    },
   },
-  methods:{
-
-  }
+  methods: {
+    removeQuote() {
+      this.$store.dispatch("deleteQuote",this.quoteId)
+    },
+  },
 };
 </script>
 
@@ -114,11 +113,12 @@ export default {
   padding-top: 18px;
   padding-bottom: 4px;
   gap: 8px;
-  transition: 0.5s ease-in all;
+  transition: 0.2s ease-in all;
   text-transform: uppercase;
   font-size: 12px;
   text-decoration: none;
   color: inherit;
+  color: #da3f3f;
 }
 .link:hover {
   color: #00afea;

@@ -1,9 +1,7 @@
 <template>
-  <div class="app">
+  <div class="app" v-if="this.$store.state.quotePosts">
     <the-header></the-header>
-    <!-- <home></home> -->
     <router-view></router-view>
-    <!-- <quotes></quotes> -->
     <the-footer></the-footer>
   </div>
 </template>
@@ -11,20 +9,12 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
-// import Home from "./pages/Home.vue";
-// import Quotes from "./pages/Quotes.vue";
 
 export default {
   name: "App",
   components: {
     TheHeader,
-    
     TheFooter,
-    // Home,
-    // Quotes,
-  },
-  created() {
-    // console.log(this.$route);
   },
 };
 </script>
@@ -100,7 +90,7 @@ export default {
   border-radius: 20px;
   border: none;
 
-  transition: .2s ease-in all;
+  transition: 0.2s ease-in all;
   /* text-transform: uppercase; */
 }
 </style>

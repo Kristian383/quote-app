@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="quoteData">
     <div
     class="quote-wrapper"
     v-bind:style="{
@@ -42,6 +42,7 @@ export default {
       return this.quoteData.photoAuthor;
     },
     quoteText() {
+      // console.log("text",this.quoteData.quoteText);
       return this.quoteData.quoteText;
     },
     quoteAuthor() {
@@ -54,8 +55,12 @@ export default {
     const quoteData = this.$store.getters.getQuotes.find(
       (quote) => quote.id == this.id
     );
-    console.log(quoteData);
-    this.quoteData=quoteData;
+    
+    if(quoteData)
+    {
+      this.quoteData=quoteData;
+      
+    }
   },
 };
 </script>
@@ -66,6 +71,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   /* margin: auto; */
+  min-height: 455px;
   align-items: center;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -93,7 +99,7 @@ export default {
 .otro-blockquote {
   font-size: 1.4em;
   /* width: 100%; */
-  max-width: 975px;
+  max-width: 80%;
   font-family: Open Sans;
   font-style: italic;
   color: #303030;
@@ -103,6 +109,7 @@ export default {
   line-height: 1.6;
   position: relative;
   background: #ededed;
+  overflow-wrap: break-word;
 }
 @media (min-width: 700px) {
   .otro-blockquote {
@@ -114,7 +121,8 @@ export default {
 }
 @media (min-width: 900px) {
   .otro-blockquote {
-    width: 60%;
+    width: 70%;
+     max-width: 975px;
   }
 }
 

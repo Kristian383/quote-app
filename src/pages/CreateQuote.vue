@@ -28,7 +28,6 @@
         </button>
         <!-- <router-link class="router-button" :to="{ name: 'QuoteVie' }"
           >Preview Quote</router-link> -->
-        
       </div>
     </div>
   </div>
@@ -71,7 +70,6 @@ export default {
       });
 
       this.$router.push("/quotes");
-      
     },
   },
 };
@@ -128,6 +126,8 @@ textarea {
   padding: 5px 8px;
   transition: background-color 0.2s ease 0s;
   resize: none;
+  
+
 }
 
 @media (min-width: 720px) {

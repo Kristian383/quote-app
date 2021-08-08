@@ -72,21 +72,22 @@ const store = createStore({
             };
             // console.log("novi quote", newSampleQuote);
             context.commit("addQuote", newSampleQuote);
+        },
+        deleteQuote(context,payload){
+            context.commit("removeQuote", payload);
         }
     },
     mutations: {
-        // setPhotoUrl(state, payload) {
-        //     const imgUrlSize = payload.regular;
-        //     state.quotePosts.photoURL = imgUrlSize;
-
-        // },
-        // setPhotoAuthor(state, payload) {
-        //     const author = payload.name;
-        //     state.quotePosts.photoAuthor = author;
-        // },
+        
         addQuote(state, payload) {
 
             state.quotePosts.unshift(payload);
+            console.log(state.quotePosts);
+        },
+        removeQuote(state,payload){
+            const index=state.quotePosts.map(el=>el.id).indexOf(payload);
+            console.log(index);
+            state.quotePosts.splice(index, 1);
             console.log(state.quotePosts);
         }
     },
