@@ -6,12 +6,13 @@
         <h3>View More Recent Quotes</h3>
         <div class="quote-cards">
           <quote-card
-            v-for="(quote, index) in sampleQuoteCards"
+            v-for="(quote, index) in quotePosts"
             :key="index"
             :quote="quote"
-            :quoteCoverPhoto="quote.quoteCoverPhoto"
+            :quoteCoverPhoto="quote.photoURL"
             :quoteDate="quote.quoteDate"
             :quoteTitle="quote.quoteTitle"
+            :quoteId="quote.id"
           ></quote-card>
         </div>
       </div>
@@ -33,7 +34,7 @@ export default {
     QuoteCard,
   },
   computed:{
-    sampleQuoteCards(){
+    quotePosts(){
       return this.$store.getters.getQuotes
     }
   }

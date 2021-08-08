@@ -3,12 +3,13 @@
     <div class="container">
       <div class="quote-cards">
         <quote-card
-          v-for="(quote, index) in sampleQuoteCards"
+          v-for="(quote, index) in quotePosts"
           :key="index"
           :quote="quote"
-          :quoteCoverPhoto="quote.quoteCoverPhoto"
+          :quoteCoverPhoto="quote.photoURL"
           :quoteDate="quote.quoteDate"
-          :quoteTitle="quote.quoteTitle"
+          :quoteAuthor="quote.quoteAuthor"
+          :quoteId="quote.id"
         ></quote-card>
       </div>
     </div>
@@ -21,7 +22,7 @@ export default {
   name: "Quotes",
   components: { QuoteCard },
   computed: {
-    sampleQuoteCards() {
+    quotePosts() {
       return this.$store.getters.getQuotes;
     },
   },

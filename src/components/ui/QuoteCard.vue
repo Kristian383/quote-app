@@ -9,13 +9,13 @@
       </div>
     </div>
     <img
-      :src="require(`../../assets/quoteCards/${quoteCoverPhoto}.jpg`)"
+      :src="quoteCoverPhoto"
       alt="Quote photo"
     />
     <div class="info">
-      <h4>{{ quoteTitle }}</h4>
-      <h6>Posted on: {{ quoteDate }}</h6>
-      <router-link :to="{ name: 'Quotes' }" class="link">
+      <h4>{{ quoteAuthor }}</h4>
+      <h6>Posted on: {{ quoteDate }} </h6>
+      <router-link :to="quoteViewLink" class="link">
         View The Quote
         <font-awesome-icon icon="eye" id="ikona"></font-awesome-icon>
       </router-link>
@@ -26,7 +26,15 @@
 <script>
 export default {
   name: "quoteCard",
-  props: ["quoteTitle", "quoteDate", "quoteCoverPhoto"],
+  props: ["quoteAuthor", "quoteDate", "quoteCoverPhoto","quoteId"],
+  computed:{
+    quoteViewLink(){
+      return  '/quotes/' + this.quoteId;
+    }
+  },
+  methods:{
+
+  }
 };
 </script>
 

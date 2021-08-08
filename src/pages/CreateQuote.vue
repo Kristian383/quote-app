@@ -10,19 +10,6 @@
           placeholder="Enter Your Name"
           v-model.trim="authorName"
         />
-        <!-- <div class="upload-file">
-          <label for="quote-photo">Upload Cover Photo</label>
-          <input
-            type="file"
-            ref="quotePhoto"
-            id="quote-photo"
-            accept=".png, .jpg, .jpeg"
-          />
-          <button class="preview" :class="{ 'button-inactive': noPhotoUrl }">
-            Preview Photo
-          </button>
-          <span>File Chosen: {{ quotePhotoName }} </span>
-        </div> -->
       </div>
       <div class="editor">
         <textarea
@@ -31,7 +18,7 @@
         ></textarea>
         <div class="error-msg" :class="{ invisible: quoteIsValid }">
           <p>
-            <span>Please insert more than 6 characters:</span>{{ quoteLength }}
+            <span>Please insert atleast 6 characters:</span>{{ quoteLength }}
           </p>
         </div>
       </div>
@@ -39,9 +26,9 @@
         <button class="router-button" @click="publishQuote">
           Publish Quote
         </button>
-        <router-link class="router-button" :to="{ name: 'QuotePreview' }"
-          >Preview Quote</router-link
-        >
+        <!-- <router-link class="router-button" :to="{ name: 'QuoteVie' }"
+          >Preview Quote</router-link> -->
+        
       </div>
     </div>
   </div>
@@ -68,19 +55,23 @@ export default {
     },
   },
   methods: {
-    publishQuote() {
-      this.quoteIsValid = true;
-
+    async publishQuote() {
       if (this.quoteLength < 6 || this.authorName === "") {
         this.quoteIsValid = false;
         return;
       }
+      this.quoteIsValid = true;
+
+      let quote = this.quoteText.replace(/\s+/g, " ");
 
       //this.loading=true
+      this.$store.dispatch("publishQuote", {
+        quoteText: quote,
+        authorName: this.authorName,
+      });
 
-      // let quote = this.quoteText.replace(/\s+/g, " ");
-
-      //publish quote
+      this.$router.push("/quotes");
+      
     },
   },
 };
