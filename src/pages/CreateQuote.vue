@@ -15,7 +15,7 @@
         ></textarea>
         <div class="error-msg" :class="{ invisible: quoteIsValid }">
           <p>
-            <span>Please insert atleast 6 characters:</span>{{ quoteLength }}
+            <span>Please insert atleast 6 characters and your name:</span>{{ quoteLength }}
           </p>
         </div>
       </div>
