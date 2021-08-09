@@ -36,20 +36,23 @@ const store = createStore({
         }
     },
     actions: {
-        //napraviti akciju koja ce prvotno ucitati ~3 slike i quota
+
+        publishEditedQuote(context, payload) {
+
+            context.commit("editQuote", payload)
+
+        },
 
         async publishQuote(context, payload) {
 
             //fetch photo data
             const response = await fetch(`https://api.unsplash.com/photos/random?orientation=landscape&client_id=${process.env.VUE_APP_KEY}`);
-            // const response = {};
             const responseData = await response.json();
-            // console.log(responseData);
             if (!response.ok) {
                 const error = new Error(responseData.message || "failed to fetch request")
                 throw error;
             }
-            console.log("responseData", responseData);
+            // console.log("responseData", responseData);
 
             const photoUrl = responseData["urls"].regular;
             const photoAuthor = responseData["user"].name;
@@ -62,7 +65,7 @@ const store = createStore({
             var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
             const newSampleQuote = {
-                photoURL: photoUrl, //quote author  and quote text
+                photoURL: photoUrl,
                 quoteDate: date,
                 photoAuthor: photoAuthor,
                 quoteText: quoteText,
@@ -70,40 +73,41 @@ const store = createStore({
                 id: Date.now()
 
             };
-            // console.log("novi quote", newSampleQuote);
             context.commit("addQuote", newSampleQuote);
         },
-        deleteQuote(context,payload){
+        deleteQuote(context, payload) {
             context.commit("removeQuote", payload);
-        }
+        },
     },
     mutations: {
-        
+
         addQuote(state, payload) {
 
             state.quotePosts.unshift(payload);
-            console.log(state.quotePosts);
         },
-        removeQuote(state,payload){
-            const index=state.quotePosts.map(el=>el.id).indexOf(payload);
-            console.log(index);
+        removeQuote(state, payload) {
+            const index = state.quotePosts.map(el => el.id).indexOf(payload);
             state.quotePosts.splice(index, 1);
-            console.log(state.quotePosts);
+        },
+        editQuote(state, payload) {
+            const quoteAuthor = payload.authorName;
+            const quoteText = payload.quoteText;
+            const quoteId = payload.quoteId;
+
+            //find quote from quotePosts
+            const quote = state.quotePosts.find((quote) => quote.id == quoteId)
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+            quote.quoteText = quoteText;
+            quote.quoteAuthor = quoteAuthor;
+            quote.date = date;
         }
     },
     getters: {
         getQuotes(state) {
-            // console.log(state.quotePosts[0].photoURL);
             return state.quotePosts;
         },
-        // getPhotoUrl(state, getters) {
-        //     const quoteId = getters.postId;
-        //     return state.quotePosts.filter(post => post.id === quoteId).photoURL;
-
-        // },
-        // getPhotoAuthor(state) {
-        //     return state.quotePosts[0].photoAuthor;
-        // }
 
     }
 

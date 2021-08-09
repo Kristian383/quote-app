@@ -1,8 +1,8 @@
 <template>
   <div class="quote-card">
     <div class="icons">
-      <div class="icon">
-        <font-awesome-icon icon="edit" class="edit"></font-awesome-icon>
+      <div class="icon" @click="editQuote">
+        <font-awesome-icon icon="edit" class="edit" ></font-awesome-icon>
       </div>
       <div class="icon" @click="removeQuote">
         <font-awesome-icon icon="trash-alt" class="delete"></font-awesome-icon>
@@ -32,6 +32,10 @@ export default {
   methods: {
     removeQuote() {
       this.$store.dispatch("deleteQuote",this.quoteId)
+    },
+    editQuote() {
+      const url="/edit-quote/"+this.quoteId;
+      this.$router.push(url)
     },
   },
 };

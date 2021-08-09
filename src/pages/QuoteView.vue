@@ -7,7 +7,7 @@
       'background-size': 'cover',
     }"
   >
-    <blockquote class="otro-blockquote">
+    <blockquote class="quote-blockquote">
       <!-- Creativity is just connecting things. When you ask creative people how
       they did something, they feel a little guilty because they didn't really
       do it, they just saw something. It seemed obvious to them after a while.
@@ -42,14 +42,13 @@ export default {
       return this.quoteData.photoAuthor;
     },
     quoteText() {
-      // console.log("text",this.quoteData.quoteText);
       return this.quoteData.quoteText;
     },
     quoteAuthor() {
       return this.quoteData.quoteAuthor;
     },
   },
-  created() {
+  mounted() {
      this.id=this.$route.params.quoteId;
     
     const quoteData = this.$store.getters.getQuotes.find(
@@ -96,7 +95,7 @@ export default {
 
 /* CITAT */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
-.otro-blockquote {
+.quote-blockquote {
   font-size: 1.4em;
   /* width: 100%; */
   max-width: 80%;
@@ -112,7 +111,7 @@ export default {
   overflow-wrap: break-word;
 }
 @media (min-width: 700px) {
-  .otro-blockquote {
+  .quote-blockquote {
     width: 80%;
     border-left: 8px solid #00afea;
     border-top: none;
@@ -120,13 +119,13 @@ export default {
   }
 }
 @media (min-width: 900px) {
-  .otro-blockquote {
+  .quote-blockquote {
     width: 70%;
      max-width: 975px;
   }
 }
 
-.otro-blockquote::before {
+.quote-blockquote::before {
   font-family: Arial;
   content: "\201C";
   color: #00afea;
@@ -136,11 +135,11 @@ export default {
   top: -10px;
 }
 
-.otro-blockquote::after {
+.quote-blockquote::after {
   content: "";
 }
 
-.otro-blockquote span {
+.quote-blockquote span {
   display: block;
   color: #333333;
   font-style: normal;

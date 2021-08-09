@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "CreateQuote",
+  name: "EditQuote",
   components: {},
 
   data() {
@@ -38,6 +38,9 @@ export default {
       authorName: "",
       quoteText: "",
       quoteIsValid: true,
+      routeId: null,
+      photoURL:null,
+      photoAuthor:null
     };
   },
   computed: {
@@ -57,13 +60,27 @@ export default {
       let quote = this.quoteText.replace(/\s+/g, " ");
 
       //this.loading=true
-      this.$store.dispatch("publishQuote", {
+      this.$store.dispatch("publishEditedQuote", {
         quoteText: quote,
         authorName: this.authorName,
+        quoteId:this.routeId,
+
       });
 
       this.$router.push("/quotes");
     },
+  },
+  mounted() {
+    this.routeId = this.$route.params.quoteId;
+    
+    const quoteData = this.$store.getters.getQuotes.find(
+      (quote) => quote.id == this.routeId
+    );
+
+    this.authorName=quoteData.quoteAuthor;
+    this.quoteText=quoteData.quoteText;
+    this.photoURL=quoteData.photoURL;
+    this.photoAuthor=quoteData.photoAuthor;
   },
 };
 </script>
