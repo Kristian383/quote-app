@@ -121,7 +121,6 @@ export default {
   text-transform: uppercase;
   font-size: 12px;
   text-decoration: none;
-  color: inherit;
   color: #da3f3f;
 }
 .link:hover {

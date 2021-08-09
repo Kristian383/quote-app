@@ -1,26 +1,26 @@
 <template>
   <div v-if="quoteData">
     <div
-    class="quote-wrapper"
-    v-bind:style="{
-      backgroundImage: 'url(' + photoUrl + ')',
-      'background-size': 'cover',
-    }"
-  >
-    <blockquote class="quote-blockquote">
-      <!-- Creativity is just connecting things. When you ask creative people how
+      class="quote-wrapper"
+      v-bind:style="{
+        backgroundImage: 'url(' + photoUrl + ')',
+        'background-size': 'cover',
+      }"
+    >
+      <blockquote class="quote-blockquote">
+        <!-- Creativity is just connecting things. When you ask creative people how
       they did something, they feel a little guilty because they didn't really
       do it, they just saw something. It seemed obvious to them after a while.
       That's because they were able to connect experiences they've had and
       synthesize new things.  -->
-      {{ quoteText }}
-      <span>~ {{ quoteAuthor }} </span>
-    </blockquote>
-  </div>
+        {{ quoteText }}
+        <span>~ {{ quoteAuthor }} </span>
+      </blockquote>
+    </div>
 
-  <div>
-    <p class="attribution">Photo by {{ photoAuthor }} on Unsplash</p>
-  </div>
+    <div>
+      <p class="attribution">Photo by {{ photoAuthor }} on Unsplash</p>
+    </div>
   </div>
 </template>
 
@@ -29,8 +29,8 @@ export default {
   name: "QuoteView",
   data() {
     return {
-      quoteData:null,
-      id:null
+      quoteData: null,
+      id: null,
     };
   },
   computed: {
@@ -49,16 +49,14 @@ export default {
     },
   },
   mounted() {
-     this.id=this.$route.params.quoteId;
-    
+    this.id = this.$route.params.quoteId;
+
     const quoteData = this.$store.getters.getQuotes.find(
       (quote) => quote.id == this.id
     );
-    
-    if(quoteData)
-    {
-      this.quoteData=quoteData;
-      
+
+    if (quoteData) {
+      this.quoteData = quoteData;
     }
   },
 };
@@ -121,7 +119,7 @@ export default {
 @media (min-width: 900px) {
   .quote-blockquote {
     width: 70%;
-     max-width: 975px;
+    max-width: 975px;
   }
 }
 

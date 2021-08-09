@@ -125,7 +125,7 @@ textarea {
   min-width: 300px;
   height: 40vh;
   background-color: rgba(0, 0, 0, 0.07);
-  border-color: -moz-use-text-color #ffffff #ffffff -moz-use-text-color;
+  border-color:  #ffffff #ffffff ;
   border: none;
   border-radius: 6px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
