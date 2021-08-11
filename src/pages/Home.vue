@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <quote-post></quote-post>
-    <div class="quote-card-wrap">
+    <div class="quote-card-wrap" v-if="quotes.length>0">
       <div class="container">
         <h3>View More Recent Quotes</h3>
         <div class="quote-cards">
@@ -36,9 +36,19 @@ export default {
   },
   computed: {
     quotePosts() {
-      return this.$store.getters.getQuotes;
+      // return this.$store.getters.getQuotes;
+      return this.quotes;
     },
   },
+  data(){
+    return{
+      quotes:[]
+    }
+  },
+  mounted(){
+    this.quotes=this.$store.getters.getQuotes;
+    // console.log("usao",this.quotes);
+  }
 };
 </script>
 

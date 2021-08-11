@@ -21,7 +21,7 @@
       </div>
       <div class="quote-actions">
         <button class="router-button" @click="publishQuote">
-          Publish Quote
+          Publish Edited Quote
         </button>
       </div>
     </div>
