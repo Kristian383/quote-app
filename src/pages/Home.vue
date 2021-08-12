@@ -18,10 +18,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="reg">
-      <h2>Never miss a post. Register for your free account today!</h2>
-      <router-link class="router-button" :to="{ name: 'Home' }">Register for fireblog</router-link>
-    </div> -->
   </div>
 </template>
 
