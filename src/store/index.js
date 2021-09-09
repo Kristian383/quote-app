@@ -46,17 +46,19 @@ const store = createStore({
         async publishQuote(context, payload) {
 
             //fetch photo data
-            const response = await fetch(`https://api.unsplash.com/photos/random?orientation=landscape&client_id=${process.env.VUE_APP_KEY}`);
-            const responseData = await response.json();
-            if (!response.ok) {
-                const error = new Error(responseData.message || "failed to fetch request")
-                throw error;
-            }
+            // const response = await fetch(`https://api.unsplash.com/photos/random?orientation=landscape&client_id=${process.env.VUE_APP_KEY}`);
+            // const responseData = await response.json();
+            // if (!response.ok) {
+            //     const error = new Error(responseData.message || "failed to fetch request")
+            //     throw error;
+            // }
             // console.log("responseData", responseData);
 
-            const photoUrl = responseData["urls"].regular;
-            const photoAuthor = responseData["user"].name;
+            // const photoUrl = responseData["urls"].regular;
+            // const photoAuthor = responseData["user"].name;
 
+            const photoUrl = require("../assets/trees.jpg");
+            const photoAuthor = "Kristian";
             const quoteAuthor = payload.authorName;
             const quoteText = payload.quoteText;
 
